@@ -38,13 +38,8 @@ public class RegistrationTest {
     public void emptyEmail() {
         User user = new User("", "password", "name");
         Response response = client.register(user);
-        response
-                .then()
-                .statusCode(403)
-                .and()
-                .assertThat().body("success", is(false))
-                .and()
-                .assertThat().body("message", equalTo("Email, password and name are required fields"));
+        check.requiredFieldNotFill(response);
+
     }
 
 }
