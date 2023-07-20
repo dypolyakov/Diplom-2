@@ -15,6 +15,6 @@ public class AuthorizationTest {
     public void successfulAuthorization() {
         Credentials credentials = Credentials.from(UserGenerator.alreadyRegistered());
         Response response = client.authorization(credentials);
-        check.registeredSuccessful(response);
+        check.authorizedSuccessful(response);
     }
 }
