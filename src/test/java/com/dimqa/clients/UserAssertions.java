@@ -3,8 +3,7 @@ package com.dimqa.clients;
 import io.restassured.response.Response;
 import org.hamcrest.CoreMatchers;
 
-import static java.net.HttpURLConnection.HTTP_FORBIDDEN;
-import static java.net.HttpURLConnection.HTTP_OK;
+import static java.net.HttpURLConnection.*;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -39,10 +38,20 @@ public class UserAssertions {
                 .statusCode(HTTP_OK)
                 .and()
                 .assertThat()
-                .body("success", CoreMatchers.equalTo(true))
+                .body("success", equalTo(true))
                 .and()
                 .body("accessToken", notNullValue())
                 .and()
                 .body("refreshToken", notNullValue());
+    }
+
+    public void authorizationFailed(Response response) {
+        response.then()
+                .statusCode(HTTP_UNAUTHORIZED)
+                .and()
+                .assertThat()
+                .body("success", equalTo(false))
+                .and()
+                .body("message", equalTo("email or password are incorrect"));
     }
 }
