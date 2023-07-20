@@ -4,11 +4,11 @@ import com.dimqa.serialization.User;
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class UserGenerator {
-    public User alreadyRegistered() {
+    public static User alreadyRegistered() {
         return new User("already@registered.ru", "already", "registered");
     }
 
-    public User random() {
+    public static User random() {
         String email = getRandomEmail();
         String password = getRandomPassword();
         String name = getRandomName();
