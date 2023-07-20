@@ -9,16 +9,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.equalTo;
-
-//@RunWith(Parameterized.class)
+@RunWith(Parameterized.class)
 public class RegistrationTest {
 
-
+    private final User user;
     private final UserGenerator generator = new UserGenerator();
     private final UserClient client = new UserClient();
     private final UserAssertions check = new UserAssertions();
+
+    public RegistrationTest(User user) {
+        this.user = user;
+    }
 
     @Test
     public void successfulRegistration() {
@@ -34,12 +35,25 @@ public class RegistrationTest {
         check.alreadyRegistered(response);
     }
 
+    @Parameterized.Parameters
+    public static Object[] getUser() {
+        return new Object[] {
+                UserGenerator.withoutEmail(),
+                UserGenerator.emptyEmail(),
+                UserGenerator.nullEmail(),
+                UserGenerator.withoutPassword(),
+                UserGenerator.emptyPassword(),
+                UserGenerator.nullPassword(),
+                UserGenerator.withoutName(),
+                UserGenerator.emptyName(),
+                UserGenerator.nullName()
+        };
+    }
+
     @Test
-    public void emptyEmail() {
-        User user = new User("", "password", "name");
+    public void withoutRequiredField() {
         Response response = client.register(user);
         check.requiredFieldNotFill(response);
-
     }
 
 }
