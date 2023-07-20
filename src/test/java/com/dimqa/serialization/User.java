@@ -1,4 +1,4 @@
-package com.dimqa.Serialization;
+package com.dimqa.serialization;
 
 public class User {
     private String email;
