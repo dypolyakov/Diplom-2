@@ -3,7 +3,6 @@ package com.dimqa.tests;
 import com.dimqa.clients.UserAssertions;
 import com.dimqa.clients.UserClient;
 import com.dimqa.generator.UserGenerator;
-import com.dimqa.serialization.Credentials;
 import com.dimqa.serialization.User;
 import com.dimqa.serialization.UserData;
 import io.restassured.response.Response;
@@ -39,6 +38,6 @@ public class UserDataChangingTest {
         String accessToken = client.getAccessToken(response);
         UserData userData = UserData.from(UserGenerator.alreadyRegistered());
         response = client.changeUserData(userData, accessToken);
-        check.emailAlreadyExist(response, userData);
+        check.emailAlreadyExist(response);
     }
 }

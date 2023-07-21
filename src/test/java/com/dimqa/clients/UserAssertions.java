@@ -1,6 +1,5 @@
 package com.dimqa.clients;
 
-import com.dimqa.serialization.Credentials;
 import com.dimqa.serialization.UserData;
 import io.restassured.response.Response;
 
@@ -78,7 +77,7 @@ public class UserAssertions {
                 .body("user.name", equalTo(userData.getName()));
     }
 
-    public void emailAlreadyExist(Response response, UserData userData) {
+    public void emailAlreadyExist(Response response) {
         response.then()
                 .statusCode(HTTP_FORBIDDEN)
                 .and()
