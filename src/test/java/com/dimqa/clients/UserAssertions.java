@@ -1,7 +1,8 @@
 package com.dimqa.clients;
 
+import com.dimqa.serialization.Credentials;
+import com.dimqa.serialization.UserData;
 import io.restassured.response.Response;
-import org.hamcrest.CoreMatchers;
 
 import static java.net.HttpURLConnection.*;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -53,5 +54,37 @@ public class UserAssertions {
                 .body("success", equalTo(false))
                 .and()
                 .body("message", equalTo("email or password are incorrect"));
+    }
+
+    public void withoutAutrohization(Response response) {
+        response.then()
+                .statusCode(HTTP_UNAUTHORIZED)
+                .and()
+                .assertThat()
+                .body("success", equalTo(false))
+                .and()
+                .body("message", equalTo("You should be authorised"));
+    }
+
+    public void userDataChanged(Response response, UserData userData) {
+        response.then()
+                .statusCode(HTTP_OK)
+                .and()
+                .assertThat()
+                .body("success", equalTo(true))
+                .and()
+                .body("user.email", equalTo(userData.getEmail().toLowerCase()))
+                .and()
+                .body("user.name", equalTo(userData.getName()));
+    }
+
+    public void emailAlreadyExist(Response response, UserData userData) {
+        response.then()
+                .statusCode(HTTP_FORBIDDEN)
+                .and()
+                .assertThat()
+                .body("success", equalTo(false))
+                .and()
+                .body("message", equalTo("User with such email already exists"));
     }
 }
