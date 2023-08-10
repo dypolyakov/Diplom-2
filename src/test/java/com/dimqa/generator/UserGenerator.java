@@ -8,6 +8,10 @@ public class UserGenerator {
         return new User("already@registered.ru", "already", "registered");
     }
 
+    public static User withOrders() {
+        return new User("with@orders.ru", "with", "orders");
+    }
+
     public static User random() {
         String email = getRandomEmail();
         String password = getRandomPassword();

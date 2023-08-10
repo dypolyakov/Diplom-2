@@ -139,4 +139,14 @@ public class UserAssertions {
         response.then()
                 .statusCode(HTTP_INTERNAL_ERROR);
     }
+
+    public void successfulReceived(Response response) {
+        response.then()
+                .statusCode(HTTP_OK)
+                .and()
+                .body("success", equalTo(true))
+                .body("orders", notNullValue())
+                .body("total", greaterThan(0));
+
+    }
 }

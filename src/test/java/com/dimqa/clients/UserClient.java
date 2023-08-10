@@ -72,21 +72,21 @@ public class UserClient {
                 .as(IngredientData.class);
     }
 
-    public Response order(String json) {
+    public Response createOrder(String json) {
         return  given()
                 .contentType(ContentType.JSON)
                 .body(json)
                 .baseUri(Api.BASE_URI)
-                .post(Api.ORDER);
+                .post(Api.ORDERS);
     }
 
-    public Response order(String json, String token) {
+    public Response createOrder(String json, String token) {
         return  given()
                 .header("Authorization", token)
                 .contentType(ContentType.JSON)
                 .body(json)
                 .baseUri(Api.BASE_URI)
-                .post(Api.ORDER);
+                .post(Api.ORDERS);
     }
 
     public String getRandomIngredients(Response response) {
@@ -97,5 +97,17 @@ public class UserClient {
         jsonObject.add("ingredients", ingredientsList);
         Gson gson = new Gson();
         return gson.toJson(jsonObject);
+    }
+
+    public Response getOrders() {
+        return given()
+                .baseUri(Api.BASE_URI)
+                .get(Api.ORDERS);
+    }
+    public Response getOrders(String token) {
+        return given()
+                .header("Authorization", token)
+                .baseUri(Api.BASE_URI)
+                .get(Api.ORDERS);
     }
 }
