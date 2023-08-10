@@ -15,8 +15,8 @@ public class UserDataChangingTest {
     @Test
     public void withoutAuthorization() {
         UserData userData = UserData.from(UserGenerator.random());
-        Response response = client.changeUserDataWithoutAuth(userData);
-        check.withoutAutrohization(response);
+        Response response = client.changeUserData(userData);
+        check.shouldBeAuthorised(response);
     }
 
     @Test
@@ -25,7 +25,9 @@ public class UserDataChangingTest {
         Response response = client.register(user);
         check.registeredSuccessful(response);
         String accessToken = client.getAccessToken(response);
+
         UserData userData = UserData.from(UserGenerator.random());
+
         response = client.changeUserData(userData, accessToken);
         check.userDataChanged(response, userData);
     }
