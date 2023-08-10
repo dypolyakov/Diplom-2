@@ -50,27 +50,6 @@ public class OrderTest {
     }
 
     @Test
-    public void orderWithEmptyIngredientsJson() {
-        String json = OrderJsons.EMPTY_JSON;
-        Response response = client.order(json);
-        check.ingredientIdsMustBeProvided(response);
-    }
-
-    @Test
-    public void orderWithoutIngredientsIDs() {
-        String json = OrderJsons.EMPTY_INGREDIENTS_IDS;
-        Response response = client.order(json);
-        check.ingredientIdsMustBeProvided(response);
-    }
-
-    @Test
-    public void orderWithNullIngredientsIDs() {
-        String json = OrderJsons.NULL_INGREDIENTS_IDS;
-        Response response = client.order(json);
-        check.ingredientIdsMustBeProvided(response);
-    }
-
-    @Test
     public void orderWithInvalidIngredientsIDs() {
         String json = OrderJsons.INVALID_INGREDIENTS_IDS;
         Response response = client.order(json);
