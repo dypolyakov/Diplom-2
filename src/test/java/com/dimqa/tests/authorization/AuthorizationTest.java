@@ -1,4 +1,4 @@
-package com.dimqa.tests;
+package com.dimqa.tests.authorization;
 
 import com.dimqa.clients.UserAssertions;
 import com.dimqa.clients.UserClient;

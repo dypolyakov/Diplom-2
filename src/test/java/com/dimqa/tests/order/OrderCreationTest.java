@@ -1,4 +1,4 @@
-package com.dimqa.tests;
+package com.dimqa.tests.order;
 
 import com.dimqa.clients.UserAssertions;
 import com.dimqa.clients.UserClient;
@@ -8,7 +8,7 @@ import com.dimqa.serialization.Credentials;
 import io.restassured.response.Response;
 import org.junit.Test;
 
-public class OrderTest {
+public class OrderCreationTest {
 
     UserClient client = new UserClient();
     UserAssertions check = new UserAssertions();
@@ -23,7 +23,7 @@ public class OrderTest {
         String json = client.getRandomIngredients(response);
 
         // Сделать заказ
-        response = client.order(json);
+        response = client.createOrder(json);
         check.orderSuccessfullyCreated(response);
     }
 
@@ -45,14 +45,14 @@ public class OrderTest {
         String json = client.getRandomIngredients(response);
 
         // Сделать заказ авторизованным пользователем
-        response = client.order(json, accessToken);
+        response = client.createOrder(json, accessToken);
         check.orderSuccessfullyCreatedWithAuth(response);
     }
 
     @Test
     public void orderWithInvalidIngredientsIDs() {
         String json = OrderJsons.INVALID_INGREDIENTS_IDS;
-        Response response = client.order(json);
+        Response response = client.createOrder(json);
         check.internalServerError(response);
     }
 }

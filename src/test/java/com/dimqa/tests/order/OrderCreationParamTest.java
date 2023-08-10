@@ -1,4 +1,4 @@
-package com.dimqa.tests;
+package com.dimqa.tests.order;
 
 import com.dimqa.clients.UserAssertions;
 import com.dimqa.clients.UserClient;
@@ -9,12 +9,12 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 @RunWith(Parameterized.class)
-public class OrderParamTest {
+public class OrderCreationParamTest {
     String json;
     UserClient client = new UserClient();
     UserAssertions check = new UserAssertions();
 
-    public OrderParamTest(String json) {
+    public OrderCreationParamTest(String json) {
         this.json = json;
     }
 
@@ -29,7 +29,7 @@ public class OrderParamTest {
 
     @Test
     public void orderWithEmptyIngredientsJson() {
-        Response response = client.order(json);
+        Response response = client.createOrder(json);
         check.ingredientIdsMustBeProvided(response);
     }
 }

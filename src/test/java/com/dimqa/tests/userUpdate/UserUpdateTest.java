@@ -1,4 +1,4 @@
-package com.dimqa.tests;
+package com.dimqa.tests.userUpdate;
 
 import com.dimqa.clients.UserAssertions;
 import com.dimqa.clients.UserClient;
@@ -8,7 +8,7 @@ import com.dimqa.serialization.UserData;
 import io.restassured.response.Response;
 import org.junit.Test;
 
-public class UserDataChangingTest {
+public class UserUpdateTest {
     UserClient client = new UserClient();
     UserAssertions check = new UserAssertions();
 

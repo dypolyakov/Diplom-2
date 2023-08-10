@@ -6,5 +6,5 @@ public class Api {
     public static final String AUTH_API = "/api/auth/login";
     public static final String USER_API = "/api/auth/user";
     public static final String INGREDIENTS = "/api/ingredients";
-    public static final String ORDER = "/api/orders";
+    public static final String ORDERS = "/api/orders";
 }
