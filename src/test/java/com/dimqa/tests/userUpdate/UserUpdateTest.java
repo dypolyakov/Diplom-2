@@ -5,6 +5,7 @@ import com.dimqa.clients.UserClient;
 import com.dimqa.generator.UserGenerator;
 import com.dimqa.serialization.User;
 import com.dimqa.serialization.UserData;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.Test;
 
@@ -13,6 +14,7 @@ public class UserUpdateTest {
     UserAssertions check = new UserAssertions();
 
     @Test
+    @DisplayName("Changing user data without authorization")
     public void withoutAuthorization() {
         UserData userData = UserData.from(UserGenerator.random());
         Response response = client.changeUserData(userData);
@@ -20,6 +22,7 @@ public class UserUpdateTest {
     }
 
     @Test
+    @DisplayName("Changing user data with authorization")
     public void withAuthorization() {
         User user = UserGenerator.random();
         Response response = client.register(user);
@@ -33,6 +36,7 @@ public class UserUpdateTest {
     }
 
     @Test
+    @DisplayName("Changing user data to existing data")
     public void emailAlreadyExist() {
         User user = UserGenerator.random();
         Response response = client.register(user);

@@ -4,6 +4,8 @@ import com.dimqa.clients.UserAssertions;
 import com.dimqa.clients.UserClient;
 import com.dimqa.generator.UserGenerator;
 import com.dimqa.serialization.User;
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,6 +38,8 @@ public class RegistrationParamTest {
     }
 
     @Test
+    @DisplayName("Create a user and fail to fill in one of the required fields")
+    @Description("User registration without one of the required fields: email, password, name")
     public void withoutRequiredField() {
         Response response = client.register(user);
         check.requiredFieldNotFill(response);

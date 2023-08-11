@@ -4,6 +4,7 @@ import com.dimqa.clients.UserAssertions;
 import com.dimqa.clients.UserClient;
 import com.dimqa.generator.UserGenerator;
 import com.dimqa.serialization.Credentials;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,6 +36,7 @@ public class AuthorizationParamTest {
     }
 
     @Test
+    @DisplayName("Login with wrong login and password")
     public void failedAuthorization() {
         Response response = client.authorization(credentials);
         check.authorizationFailed(response);

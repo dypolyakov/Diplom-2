@@ -4,6 +4,7 @@ import com.dimqa.clients.UserAssertions;
 import com.dimqa.clients.UserClient;
 import com.dimqa.generator.UserGenerator;
 import com.dimqa.serialization.Credentials;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.Test;
 
@@ -13,6 +14,7 @@ public class OrderGettingTest {
     UserAssertions check = new UserAssertions();
 
     @Test
+    @DisplayName("Receiving orders of a specific unauthorized user")
     public void getOrderWithoutAuthorization() {
         // Получение заказов без токена авторизации
         Response response = client.getOrders();
@@ -20,6 +22,7 @@ public class OrderGettingTest {
     }
 
     @Test
+    @DisplayName("Receiving orders of a specific authorized user")
     public void getOrderWithAuthorization() {
         // Авторизация
         Credentials credentials = Credentials.from(UserGenerator.withOrders());

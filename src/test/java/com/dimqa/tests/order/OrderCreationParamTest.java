@@ -3,6 +3,7 @@ package com.dimqa.tests.order;
 import com.dimqa.clients.UserAssertions;
 import com.dimqa.clients.UserClient;
 import com.dimqa.constants.OrderJsons;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,6 +29,7 @@ public class OrderCreationParamTest {
     }
 
     @Test
+    @DisplayName("Creating an order without ingredients")
     public void orderWithEmptyIngredientsJson() {
         Response response = client.createOrder(json);
         check.ingredientIdsMustBeProvided(response);

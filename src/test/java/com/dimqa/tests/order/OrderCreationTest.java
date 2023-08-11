@@ -5,6 +5,7 @@ import com.dimqa.clients.UserClient;
 import com.dimqa.constants.OrderJsons;
 import com.dimqa.generator.UserGenerator;
 import com.dimqa.serialization.Credentials;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.Test;
 
@@ -14,6 +15,7 @@ public class OrderCreationTest {
     UserAssertions check = new UserAssertions();
 
     @Test
+    @DisplayName("Creating an order without authorization")
     public void orderWithoutAuthorization() {
         // Получить список доступных ингредиентов
         Response response = client.getIngredients();
@@ -28,6 +30,7 @@ public class OrderCreationTest {
     }
 
     @Test
+    @DisplayName("Creating an order with authorization")
     public void orderWithAuthorization() {
         // Авторизация
         Credentials credentials = Credentials.from(UserGenerator.alreadyRegistered());
@@ -50,6 +53,7 @@ public class OrderCreationTest {
     }
 
     @Test
+    @DisplayName("Creating an order with an incorrect ingredient hash")
     public void orderWithInvalidIngredientsIDs() {
         String json = OrderJsons.INVALID_INGREDIENTS_IDS;
         Response response = client.createOrder(json);
