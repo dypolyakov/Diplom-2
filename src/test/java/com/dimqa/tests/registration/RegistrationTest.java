@@ -16,7 +16,7 @@ public class RegistrationTest {
 
     @Test
     @DisplayName("Creating a unique user")
-    @Description("User registration with a random username, password and name")
+    @Description("The test checks for successful registration of a user with a unique email, password and name")
     public void successfulRegistration() {
         User user = UserGenerator.random();
         Response response = client.register(user);
@@ -25,7 +25,7 @@ public class RegistrationTest {
 
     @Test
     @DisplayName("Creating a user who is already registered")
-    @Description("Registering a user with a username and password that already exists")
+    @Description("The test checks for a registration error when a user enters an existing email, password, or name")
     public void alreadyRegistered() {
         User user = UserGenerator.alreadyRegistered();
         Response response = client.register(user);

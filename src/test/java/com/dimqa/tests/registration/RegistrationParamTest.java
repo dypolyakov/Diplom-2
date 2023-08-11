@@ -39,7 +39,7 @@ public class RegistrationParamTest {
 
     @Test
     @DisplayName("Create a user and fail to fill in one of the required fields")
-    @Description("User registration without one of the required fields: email, password, name")
+    @Description("The test checks for a registration error when a user enters an incorrect email, password or name")
     public void withoutRequiredField() {
         Response response = client.register(user);
         check.requiredFieldNotFill(response);
