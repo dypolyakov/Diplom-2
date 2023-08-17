@@ -110,4 +110,11 @@ public class UserClient {
                 .baseUri(Api.BASE_URI)
                 .get(Api.ORDERS);
     }
+
+    public Response delete(String token) {
+        return given()
+                .header("Authorization", token)
+                .baseUri(Api.BASE_URI)
+                .delete(Api.DELETE);
+    }
 }

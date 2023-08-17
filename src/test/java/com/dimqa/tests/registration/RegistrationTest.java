@@ -21,6 +21,9 @@ public class RegistrationTest {
         User user = UserGenerator.random();
         Response response = client.register(user);
         check.registeredSuccessful(response);
+        String accessToken = client.getAccessToken(response);
+        response = client.delete(accessToken);
+        check.userDeleted(response);
     }
 
     @Test

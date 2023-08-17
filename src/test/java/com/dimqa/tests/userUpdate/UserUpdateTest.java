@@ -30,12 +30,14 @@ public class UserUpdateTest {
         User user = UserGenerator.random();
         Response response = client.register(user);
         check.registeredSuccessful(response);
+
         String accessToken = client.getAccessToken(response);
-
         UserData userData = UserData.from(UserGenerator.random());
-
         response = client.changeUserData(userData, accessToken);
         check.userDataChanged(response, userData);
+
+        response = client.delete(accessToken);
+        check.userDeleted(response);
     }
 
     @Test
@@ -45,9 +47,13 @@ public class UserUpdateTest {
         User user = UserGenerator.random();
         Response response = client.register(user);
         check.registeredSuccessful(response);
+
         String accessToken = client.getAccessToken(response);
         UserData userData = UserData.from(UserGenerator.alreadyRegistered());
         response = client.changeUserData(userData, accessToken);
         check.emailAlreadyExist(response);
+
+        response = client.delete(accessToken);
+        check.userDeleted(response);
     }
 }

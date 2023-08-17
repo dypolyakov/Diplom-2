@@ -149,4 +149,12 @@ public class UserAssertions {
                 .body("total", greaterThan(0));
 
     }
+
+    public void userDeleted(Response response) {
+        response.then()
+                .statusCode(HTTP_ACCEPTED)
+                .and()
+                .body("success", equalTo(true))
+                .body("message", equalTo("User successfully removed"));
+    }
 }
